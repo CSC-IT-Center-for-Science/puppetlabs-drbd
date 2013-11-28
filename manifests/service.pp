@@ -2,7 +2,7 @@ class drbd::service {
   @service { 'drbd':
     ensure  => running,
     enable  => true,
-    require => Package['drbd8-utils'],
+    require => Package[$drbd::params::package_name],
     restart => 'service drbd reload',
   }
 }
