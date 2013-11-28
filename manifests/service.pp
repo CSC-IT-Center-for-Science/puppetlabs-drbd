@@ -1,4 +1,4 @@
-class drbd::service {
+class drbd::service inherits drbd::params {
   @service { 'drbd':
     ensure  => running,
     enable  => true,

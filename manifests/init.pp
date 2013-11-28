@@ -4,7 +4,7 @@
 # It has been influenced by the camptocamp module as well as
 # by an example created by Rackspace's cloudbuilders
 #
-class drbd {
+class drbd inherits drbd::params {
   include drbd::service
 
   package { 'drbd':
