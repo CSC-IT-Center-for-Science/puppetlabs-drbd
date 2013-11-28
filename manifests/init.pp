@@ -9,7 +9,7 @@ class drbd {
 
   package { 'drbd':
     ensure => present,
-    name   => 'drbd8-utils',
+    name   => $drbd::params::package_name,
   }
 
   # ensure that the kernel module is loaded
