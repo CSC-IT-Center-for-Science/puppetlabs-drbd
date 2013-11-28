@@ -7,9 +7,8 @@
 class drbd inherits drbd::params {
   include drbd::service
 
-  package { 'drbd':
+  package { $drbd::params::package_name:
     ensure => present,
-    name   => $drbd::params::package_name,
   }
 
   # ensure that the kernel module is loaded
@@ -22,7 +21,7 @@ class drbd inherits drbd::params {
     mode    => '0644',
     owner   => 'root',
     group   => 'root',
-    require => Package['drbd'],
+    require => Package[$drbd::params::package_name],
     notify  => Class['drbd::service'],
   }
 
@@ -46,7 +45,7 @@ class drbd inherits drbd::params {
     purge   => true,
     recurse => true,
     force   => true,
-    require => Package['drbd'],
+    require => Package[$drbd::params::package_name],
   }
 
 #  exec { "fix_drbd_runlevel":
