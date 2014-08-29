@@ -13,7 +13,7 @@ define drbd::resource::up (
   exec { "initialize DRBD metadata for ${name}":
     command => "yes yes | drbdadm create-md ${name}",
     onlyif  => "test -e ${disk}",
-    unless  => "drbdadm dump-md ${name} || (drbdadm cstate ${name} | egrep -q '^(Sync|Connected|WFConnection|StandAlone)')",
+    unless  => "drbdadm get-gi ${name} &>/dev/null",
     before  => Service['drbd'],
     require => [
       Exec['modprobe drbd'],
